@@ -1,0 +1,37 @@
+#include "DHT.h"   //https://github.com/adafruit/DHT-sensor-library 
+// Create the DHT temperature and humidity sensor object
+DHT dht1(D4, DHT11);
+DHT dht2(D2, DHT22);
+
+
+void setup(void) {
+  Serial.begin(9600);
+  dht1.begin();
+  dht2.begin();
+  
+}
+
+void loop() {
+  // Read DHT temperature and humidity values
+  float DHT11_t = dht1.readTemperature();
+  float DHT11_h = dht1.readHumidity();
+
+  float DHT21_t = dht2.readTemperature();
+  float DHT21_h = dht2.readHumidity();
+
+
+    
+  Serial.print("DHT11  ");
+  Serial.print(DHT11_t,1); Serial.print(" C  ");
+  Serial.print(DHT11_h,1); Serial.println("%RH");
+  Serial.println();
+
+  Serial.print("DHT21  ");
+  Serial.print(DHT21_t,1); Serial.print(" C  ");
+  Serial.print(DHT21_h,1); Serial.println(" %RH");
+  Serial.println();
+
+
+
+  delay(1000);
+}
